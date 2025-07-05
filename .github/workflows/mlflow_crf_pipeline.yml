@@ -1,0 +1,62 @@
+# .github/workflows/mlflow_crf_pipeline.yml
+
+name: 🧪 ML CRF NER Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  crf-training:
+    name: 🚀 Train CRF Model with MLflow
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m nltk.downloader punkt averaged_perceptron_tagger punkt_tab averaged_perceptron_tagger_eng
+
+      - name: 🏗️ Run CRF Training
+        run: |
+          python ml_pipeline/train_crf.py
+
+      - name: 📤 Upload Model Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: crf_model
+          path: ml_pipeline/crf_model.joblib
+
+  fastapi-check:
+    name: 🔍 Lint and Check FastAPI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: ✅ Lint FastAPI app
+        run: |
+          python -m py_compile api/app.py
