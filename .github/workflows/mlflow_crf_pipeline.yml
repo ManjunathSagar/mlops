@@ -67,7 +67,9 @@ jobs:
 
   gcp-deploy:
     name: 🚀 Deploy FastAPI to GCP Cloud Run
-    needs: crf-training
+    needs: 
+      - crf-training
+      - fastapi-check
     runs-on: ubuntu-latest
     environment:
       name: development
