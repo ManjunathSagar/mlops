@@ -10,6 +10,10 @@ on:
     branches:
       - master
 
+permissions:
+  id-token: write       # Required for OIDC authentication
+  contents: read        # Allows checkout of the repo
+
 jobs:
   crf-training:
     name: Train CRF Model with MLflow
