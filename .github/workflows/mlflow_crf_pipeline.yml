@@ -35,7 +35,7 @@ jobs:
           python ml_pipeline/train_crf.py
 
       - name: 📤 Upload Model Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: crf_model
           path: ml_pipeline/crf_model.joblib
