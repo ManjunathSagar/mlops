@@ -8,7 +8,8 @@ from sklearn.model_selection import train_test_split
 from sklearn_crfsuite import metrics
 #from ml_pipeline.model_utils import sentence2features, sentence2labels
 from model_utils import sentence2features, sentence2labels
-from ml_pipeline.data_prep import load_dataset, split_sentences
+#from ml_pipeline.data_prep import load_dataset, split_sentences
+from data_prep import load_dataset, split_sentences
 
 nltk.download("punkt")
 nltk.download("averaged_perceptron_tagger")
