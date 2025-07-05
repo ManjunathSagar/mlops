@@ -3,4 +3,4 @@ __pycache__/
 *.joblib
 .env
 *.pyc
-mlvenv
+mlvenv/
