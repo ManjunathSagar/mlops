@@ -1,6 +1,5 @@
 mlruns/
 __pycache__/
-*.joblib
 .env
 *.pyc
 mlfvenv/
