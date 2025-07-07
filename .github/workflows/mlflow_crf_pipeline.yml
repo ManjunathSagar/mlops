@@ -97,7 +97,7 @@ jobs:
     #   - name: 🔧 Set up Google Cloud SDK
     #     uses: google-github-actions/setup-gcloud@v1
     #     with:
-    #       project_id: ${{ secrets.GCP_PROJECT_ID }}
+    #       project_id: ${{ secrets.GCP_PROJECT_ID }} id
 
       - name: Set GCP project
         run: gcloud config set project ecommapp-dev-464408
