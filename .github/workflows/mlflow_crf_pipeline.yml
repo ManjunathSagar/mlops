@@ -104,17 +104,18 @@ jobs:
 
       - name: 🐳 Build and Push Docker Image
         run: |
-          gcloud builds submit --tag gcr.io/667702265593/crf-ner-app
+          gcloud builds submit --tag us-central1-docker.pkg.dev/ecommapp-dev-464408/crf-ner-app-repo/crf-ner-app
 
+#gcr.io/667702265593/crf-ner-app
       - name: 🚀 Deploy to Cloud Run
         id: deploy
         run: |
           gcloud run deploy crf-ner-app \
-            --image gcr.io/667702265593/crf-ner-app \
+            --image us-central1-docker.pkg.dev/ecommapp-dev-464408/crf-ner-app-repo/crf-ner-app \
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated \
             --quiet
-
+#--image gcr.io/667702265593/crf-ner-app \
       - name: 📣 Print App URL
         run: echo "Deployed at ${{ steps.deploy.outputs.url }}"
